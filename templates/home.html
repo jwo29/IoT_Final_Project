@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block desc %}
+{% endblock %}
+
+{% block main_context %}
+<!-- 센서 상태 표현 -->
+<div id="sensor-state">
+    {% if sensor.state == True %}
+    <h4 id="sensor-state-text">Sensor is working</h4>
+    <img id="sensor-state-img" src="{{ url_for('static', filename='image/sensor_on.png') }}" alt="sensor on"/>
+    {% else %}
+    <h4 id="sensor-state-text">Sensor is stopping</h4>
+    <img id="sensor-state-img" src="{{ url_for('static', filename='image/sensor_off.png') }}" alt="sensor off"/>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block buttons %}
+{% if sensor.state == True %}
+    <a href="/result"><button id="sensor-off-btn">SENSOR OFF &<br/>LOAD DATA</button></a>
+    <a href="/removeall"><button id="reset-btn">RESET &<br/>RESTART</button></a>
+{% else %}
+    <a href="/sensor/on"><button id="sensor-on-btn">SENSOR ON</button></a>
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
